@@ -1,0 +1,84 @@
+======================
+   Styled-Components
+======================
+// Motivation(動機)
+　　styled-components is the result of wondering how we could enhance(高める) CSS for styling React component systems. By focusing on a single use case we managed to optimize(最適化する) the experience for developers as well as the output for end users.
+
+// Apart from（~の他に) the improved experience for developers, styled-components provides:
+
+    ####  You get all of these benefits while still writing the CSS you know and love, just bound to individual components. ####
+
+    * Automatic critical CSS: styled-components keeps track of which components are rendered on a page and injects(= put into 注入する) their styles and nothing else, fully automatically. Combined with code splitting, this means your users load the least amount of code necessary.
+
+    * No class name bugs: styled-components generates unique class names for your styles. You never have to worry about duplication, overlap or misspellings.
+
+    * Easier deletion of CSS: it can be hard to know whether a class name is used somewhere in your codebase. styled-components makes it obvious, as every bit of styling is tied to（be tied to = be related to) a specific component. If the component is unused (which tooling can detect) and gets deleted, all its styles get deleted with it.
+
+    * Simple dynamic styling: adapting the styling of a component based on its "props" or "a global theme" is simple and intuitive(〈 intuiitive : ソフトウェアが〉使いやすい，理解しやすい) without having to manually(手動で) manage dozens(ダース, 一組) of classes.
+
+    * Painless maintenance: you never have to hunt across different files to find the styling affecting your component, so maintenance is a piece of cake no matter how big your codebase is.
+
+    *Automatic vendor prefixing (Vendor Prefix (ベンダー接頭辞)): write your CSS to the current standard and let styled-components handle the rest.
+================================
+## Vendor Prefix (ベンダー接頭辞)
+=================================
+       ブラウザーベンダー (提供元) は、時に試験的または非標準な CSS プロパティおよび JavaScript API に接頭辞を追加することがあります。これにより、開発者は標準化プロセスの中で、理論上は、ウェブ開発者のコードを壊すことなく新しいアイデアを試すことができます。開発者は、ブラウザーの振る舞いが標準化されるまで、接頭辞を外したプロパティを導入するのを待つべきです。
+
+       ブラウザーベンダーは、実験的な機能にベンダー接頭辞をつけることをやめるようになってきています。ウェブ開発者は、実験的な機能であるにもかかわらず、実運用のウェブサイトで使用し続けてきました。これはブラウザーベンダーが互換性を維持して、新しい機能を導入することを困難にしてしまいました。これはシェアの小さなブラウザーにとっても有害で、有名なウェブサイトを読み込むために他のブラウザーの接頭辞を追加せざるを得ない結果になりました。
+
+　　　　最近は、実験的な機能をユーザーが制御するフラグや設定によって隠して追加するようにし、
+　　　　より早く安定状態になるようにより小さな仕様を作成する傾向があります。
+e.g)
+CSS の接頭辞
+主要なブラウザーは、以下の接頭辞を使用しています。
+
+-webkit- (Chrome, Safari, 新しいバージョンの Opera, ほぼすべての iOS ブラウザー (Firefox for iOS を含む)。基本的に WebKit ベースのブラウザーすべて)
+-moz- (Firefox)
+-o- (WebKit 導入前の古い Opera)
+-ms- (Internet Explorer と Microsoft Edge)
+
+code example)
+-webkit-transition: all 4s ease;
+-moz-transition: all 4s ease;
+-ms-transition: all 4s ease;
+-o-transition: all 4s ease;
+transition: all 4s ease; 
+===============================================
+
+// Installation
+   * command line
+   ======================================
+   npm install --save styled-components
+   ======================================
+
+   *In package.json:
+   //　add ↓↓↓↓↓↓↓↓↓↓↓↓
+   ==================================
+   }
+     "resolutions": {
+         "styled-components": "^5"
+     }
+  }
+  ==================================
+
+  ****** NOTE *********
+  It's highly recommended (but not required) to also use the Babel plugin. It offers many benefits like more legible class names, server-side rendering compatibility, smaller bundles, and more.
+  **********************
+
+===================================================
+
+  If you're not using a module bundler or package manager we also have a global ("UMD") build hosted on the unpkg CDN. Simply add the following <script> tag to the bottom of your HTML file:
+　↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Put this into HTML-file
+　
+    <script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
+===================================================
+
+  ******* important ************
+
+  Once you've added styled-components you will have access to the global window.styled variable.
+  ーーー　like the below↓↓↓↓↓↓↓↓↓　ーーーーー
+  const Component = window.styled.div`
+  color: red;
+`
+  *****************************
+

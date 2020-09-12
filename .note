@@ -1,0 +1,314 @@
+===========================================
+//ES2015のモジュール機能(import/export)
+===========================================
+
+* ES2015のimport/exportについて
+別ファイルの内容をimportして取り込める
+自ファイルの内容をexportして公開できる
+
+*Code Sample
+<User.js>
+export default 'Ozaki';
+export const name1 = 'Mike';
+export const name2 = 'John';
+
+<Hello.js>
+import User, { name1, name2 } from './User';
+console.log(User); // Ozaki
+console.log(name1); // Mike
+console.log(name2); // John
+
+<Hello2.js>
+import aaa, { name1 as bbb, name2 as ccc } from './User';
+
+console.log(aaa); // Ozaki
+console.log(bbb); // Mike
+console.log(ccc); // John
+
+//Code Sample Description
+*　export defaultで公開した値は
+　・中括弧なしでimportできる
+　・どんな名前でimportしてもよい
+*　exportで公開した値は
+　・中括弧をつけてimportする
+　・export時の変数名でimportする
+　・{ xxx as yyy }とすることで任意の変数名に変えることができる
+
+// Other
+・export defaultで公開できるのは１ファイル１つ
+・変数でも関数でもclassでもexportできる
+
+
+===========================================
+// What is React ?
+===========================================
+// React.ja とは
+・ユーザーインターフェイス構築のためのJavaScript ライブラリ
+・「状態」の変更をトリガーに、View(DOM)を再レンダリング（再描写）し、動的でリッチなUIを実現する。
+
+// React を使うメリット
+・データの変更を元にView(DOM) を生成し、動的なUIを作れる。
+　　＊差分を検知、関連する部分だけを効率的に更新
+
+・HTML/CSS とJavaScriptをまとめて書ける。
+　　＊従来のように静的ページと動的ロジックを分けるが必要ない。
+
+・一度学習すれば、どこでも使える。
+　　＊モバイル(ReactNative)、デスクトップ(Electron)、Web,VR(React360)
+
+
+// KeyWord
+・JSX/トランスパイル
+・コンポーネント
+・状態(state, props)
+・レンダリング
+・ライフサイクルメソッド
+　　
+
+//　Reactの書き方
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+・JSX　(JavaScript構文の拡張)　を使って書くことが可能
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+const element = <h1> Hello, World </h1>；
+　// HTMLのようなテンプレートをJavaScriptの中に書ける。
+
+const element2 =(props) => {
+  return <h1>Hello, {props.text} </h1>；
+};
+　// Reactは関数に渡すデータを変えることで、その都度、異なるView(DOM)の生成がが可能。
+
+***** BUT *****
+・JSXはHTMLでもJavaScriptでもないため、実際にブラウザで動かす際は、トランスパイルが必要。
+　→　SXで書かれた式を生のJavaScriptとして変換
+
+
+// ReactはどうやってHTMLを生成しているの？
+   ＊仮装のDOMを構築することでwebページ(HTML)を表現
+
+
+//　仮装DOMとは？
+　  実際にwebページに表示されつことのない仮装のDOM
+
+　  →　従来のWebページだと画面を変更するのに表示されているHTML(DOM) を直接書き換えたりするのでパフォーマンスが悪い。
+
+1. React が記述されたコンポーネントを基に仮装DOMを構築
+2. 仮装DOMからHTMLを生成。
+3. HTMLがWebページを表現
+
+
+// コンポーネントとは？
+　→　構成要素
+
+
+// React Component
+　＊UIを独立した再利用できる部品に分割したもの、任意のデータの受け取り。
+　＊Reactの要素(画面上に表示したいもの)を返す。
+e.g)
+// Functional Components
+
+funtion Welcome (props){
+    return <h1>Hello, (props)</h1>
+}
+
+// Class Components
+
+class HelloMessage extends React.Components {
+    render(){
+       return(
+           <div>
+           Hello {this.props.name}
+           </div>
+       )   
+    }
+}
+
+
+// コンポーネントを組み合わせる
+*作成したコンポーネントは、定義した名称を使い、１つのwebパーツとして再利用できる。
+e.g)
+// JavaScriptで作成されたコンポーネントをHTMLタグのように使用できる。
+
+funtion App() {
+    return(
+        <div>
+          <Welcome name="Sara" />
+          <Welcome name="Cahal" />
+          <Welcome name="Edit" />
+        </div>
+    );
+}
+
+＊＊＊＊＊＊重要＊＊＊＊＊＊＊
+データの変更を基にView(DOM)を作成している
+
+
+//　コンポーネントのデータ管理方法は？
+   ＊　データ　＝「状態」として、コンポーネントが保持
+
+   ＊状態(state)
+    状態(state)は、コンポーネント自身が保持するデータのこと
+    →→　setState()を使い、状態の中身を更新していく。
+
+   ＊状態の受け渡し（props）
+    １つのコンポーネントが持つ「状態」を別のコンポーネントに渡して利用することも可能
+
+   ＊親に渡されたStateは子の中でPropsとして使用される
+   「親コンポーネント」（state) = 「子コンポーネント」（props）
+e.g) 状態を持つコンポーネント
+     // ①Stateの初期状態countNum:0 は最初のView「現在の値：０」↓↓↓↓↓↓↓↓
+
+class Counter extends Components {
+    constructor(props){
+        super(props);
+        this.state =(
+            countNum : 0
+        );
+    };
+
+     // ②ボタンが押されたとき、setStateで状態の中の値をcountNum +1 に更新する→View「現在の値：１」↓↓↓↓↓↓↓↓
+
+    countUp = () => {
+        this.setState({
+            countNum: this.state.value +1
+        });
+      };
+    };
+
+     //View
+ render(){
+     return(
+         <div>
+            <div>Current: {this.state.value} </div>
+            <button type="button" onClick={this.countUp} >Count up! </button>
+         </div>
+     );
+ }; 
+
+
+
+// props 状態の受け渡し
+===== Parents Component Start======
+
+class App extends Component {
+    constructor(props){
+        super(props)
+        // ①↓↓↓↓
+        this.state = {name: Sara}
+    }
+    render() {
+        return(
+            <div>
+            　　　　　　　　　　// ②↓↓↓↓
+              <Welcome name={this.state.name} />
+            </div>
+        );
+    }
+}
+
+class Welcome extends Components {
+    constructor(props){
+        super(props)
+    }
+    render(){
+        return(
+            <div>
+               Helllo! {this.props.name}
+            </div>
+        );
+    }
+}
+===== Parents Component End======
+
+===== Child Component Start======
+class App extends Component {
+    //③↓↓↓↓↓
+    constructor(props){
+        super(props)
+        this.state = { name: Sara}
+    }
+    render(){
+        return(
+            <div>
+            　　　　　　　//④↓↓↓↓↓
+                Helllo! {this.props.name}
+            </div>
+        )
+    }
+}
+// ①親のStateが
+　　②子に渡された
+　　③propsとして
+　　④Viewを生成
+
+===== Child Component End======
+
+
+// Reactのデータの流れ
+  Rootコンポーネントがデータ(state)を保持、その情報を引数p莉緒psとして上から下に一方向に流していく
+
+
+// state と　props
+
+＊レンダリングされるタイミング
+コンポーネントの持つ、stateかprops(状態)が変更された時
+　→→　”setState” をきっかけに render()が実行される（再レンダリング）
+
+＊コンポーネントは、
+　最初の表示〜非表示になるまで、何度も状態の更新とレンダリングを行う。
+　→→　これが　”　コンポーネントライフサイクル　”
+
+
+//コンポーネントライフサイクル
+
+＜コンポーネントの生成＞ レンダリング（最初のページ表示）
+　　・Mounting
+      * Render Stage
+        →　constructor
+        →　render
+
+      * Commit Stage
+        →　componentDidMount
+
+ ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓     
+<状態の更新＞　再レンダリング
+    ・Updating
+      * Render Stage
+        →　getDerivedStateFromProps
+        →　shuldComponentUpdate
+        →　render
+
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓     
+<コンポーネントの破棄＞　非表示（ページ遷移、条件表示など）
+　　　・Unmounting
+      * Commit Stage
+        →　componentWillUnMount
+
+
+// ライフサイクルメソッド
+　　＊　Reactのコンポーネントはそれぞれライフサイクルを持ち、それぞれのライフサイクルのタイミングで任意の処理を実行する
+
+　　＊　ライフサイクルメソッド
+　　　　・componentDidMount
+    　 ・componentDidUpdate
+　　　　・componentWillUnMount
+                      etc .......
+
+ 
+// Summary
+・JSX/トランスパイル
+   ＊ReactはJSXでViewを表現。　それをトランスパイルし、生のJavaScriptに変換
+・コンポーネント（Component）
+　　＊任意のデータを受け取り、React要素を返す関数でWebのパーツを作る。
+・状態(state, props)
+　　＊自分自身が保持するデータが　”state”　。
+　　＊親から渡されるものが　””props　。
+・レンダリング
+・ライフサイクルメソッド
+
+
+
+// React.js とは
+・ユーザーインターフェイス構築のためのJavaScript ライブラリ
+・「状態」の変更をトリガーに、View(DOM)を再レンダリング（再描写）し、動的でリッチなUIを実現する。
