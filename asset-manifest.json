@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/static/js/main.5e6fa1a7.chunk.js",
-    "main.js.map": "/static/js/main.5e6fa1a7.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.9c121763.js",
-    "runtime-main.js.map": "/static/js/runtime-main.9c121763.js.map",
-    "static/js/2.d25ed6b7.chunk.js": "/static/js/2.d25ed6b7.chunk.js",
-    "static/js/2.d25ed6b7.chunk.js.map": "/static/js/2.d25ed6b7.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.c24533a7568f336488a2870f9af52b6f.js": "/precache-manifest.c24533a7568f336488a2870f9af52b6f.js",
-    "service-worker.js": "/service-worker.js",
-    "static/js/2.d25ed6b7.chunk.js.LICENSE.txt": "/static/js/2.d25ed6b7.chunk.js.LICENSE.txt"
+    "main.js": "/YusukeYoshihiro/TIcTacToe-TReact/static/js/main.75c184d7.chunk.js",
+    "main.js.map": "/YusukeYoshihiro/TIcTacToe-TReact/static/js/main.75c184d7.chunk.js.map",
+    "runtime-main.js": "/YusukeYoshihiro/TIcTacToe-TReact/static/js/runtime-main.4c500388.js",
+    "runtime-main.js.map": "/YusukeYoshihiro/TIcTacToe-TReact/static/js/runtime-main.4c500388.js.map",
+    "static/js/2.b9b4c45d.chunk.js": "/YusukeYoshihiro/TIcTacToe-TReact/static/js/2.b9b4c45d.chunk.js",
+    "static/js/2.b9b4c45d.chunk.js.map": "/YusukeYoshihiro/TIcTacToe-TReact/static/js/2.b9b4c45d.chunk.js.map",
+    "index.html": "/YusukeYoshihiro/TIcTacToe-TReact/index.html",
+    "precache-manifest.07a47bf1c807bc63eb5345951a6f5ecb.js": "/YusukeYoshihiro/TIcTacToe-TReact/precache-manifest.07a47bf1c807bc63eb5345951a6f5ecb.js",
+    "service-worker.js": "/YusukeYoshihiro/TIcTacToe-TReact/service-worker.js",
+    "static/js/2.b9b4c45d.chunk.js.LICENSE.txt": "/YusukeYoshihiro/TIcTacToe-TReact/static/js/2.b9b4c45d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.9c121763.js",
-    "static/js/2.d25ed6b7.chunk.js",
-    "static/js/main.5e6fa1a7.chunk.js"
+    "static/js/runtime-main.4c500388.js",
+    "static/js/2.b9b4c45d.chunk.js",
+    "static/js/main.75c184d7.chunk.js"
   ]
 }
